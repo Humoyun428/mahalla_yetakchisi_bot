@@ -1,4 +1,2 @@
 aiogram==2.25.2
-aiohttp>=3.8.1
-openpyxl
-python-dotenv
+openpyxl==3.1.2
