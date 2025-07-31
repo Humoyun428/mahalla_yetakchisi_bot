@@ -1,0 +1,24 @@
+# Python
+pycache/
+*.py[cod]
+*.pyo
+*.pyd
+*.env
+.env
+*.sqlite3
+
+# VS Code & PyCharm
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Excel va vaqtinchalik fayllar
+*.xlsx
+*.xls
+*.tmp
