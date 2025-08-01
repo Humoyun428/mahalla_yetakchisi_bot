@@ -8,10 +8,3 @@ services:
     envVars:
       - key: BOT_TOKEN
         sync: false
-      - key: WEBHOOK_URL
-        sync: false
-      - key: ADMINS
-        sync: false
-    region: oregon
-    runtime: python
-    pythonVersion: 3.10.11
