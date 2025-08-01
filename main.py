@@ -15,7 +15,6 @@ import os
 import openpyxl
 from utils.excel_writer import save_report_to_excel
 from dotenv import load_dotenv
-
 load_dotenv()
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
