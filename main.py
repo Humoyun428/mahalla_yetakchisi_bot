@@ -16,12 +16,12 @@ from aiogram.client.default import DefaultBotProperties
 load_dotenv()
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
-WEBHOOK_HOST = os.getenv("WEBHOOK_DOMAIN")
-WEBHOOK_PATH = os.getenv("WEBHOOK_PATH")
-WEBHOOK_URL = WEBHOOK_HOST + WEBHOOK_PATH
+BASE_WEBHOOK_URL = os.getenv("BASE_WEBHOOK_URL", "https://your-default-url.com")
+WEBHOOK_PATH = f"/webhook/{BOT_TOKEN}"
+WEBHOOK_URL = f"{BASE_WEBHOOK_URL}{WEBHOOK_PATH}"
 
 WEBAPP_HOST = os.getenv("WEBAPP_HOST", "0.0.0.0")
-WEBAPP_PORT = int(os.getenv("WEBAPP_PORT", 8000))
+WEBAPP_PORT = int(os.getenv("PORT", 8000))
 
 bot = Bot(
     token=BOT_TOKEN,
@@ -73,8 +73,8 @@ async def get_photo(message: Message, state: FSMContext):
         await state.clear()
 
 async def on_startup(app: web.Application):
-    await bot.set_webhook(WEBHOOK_URL + WEBHOOK_PATH)
-    print("✅ Webhook o‘rnatildi:", WEBHOOK_URL + WEBHOOK_PATH)
+    await bot.set_webhook(WEBHOOK_URL)
+    print("✅ Webhook o‘rnatildi:", WEBHOOK_URL)
 
 async def on_shutdown(app: web.Application):
     await bot.delete_webhook()
