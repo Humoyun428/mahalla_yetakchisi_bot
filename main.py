@@ -15,17 +15,24 @@ import os
 import openpyxl
 from utils.excel_writer import save_report_to_excel
 from dotenv import load_dotenv
+from aiogram.utils.executor import (start_webhook)
+
 load_dotenv()
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
+bot = Bot(token=BOT_TOKEN, parse_mode=types.ParseMode.HTML)
+dp = Dispatcher(bot)
 
-bot = Bot(token=BOT_TOKEN, parse_mode="HTML")
-logging.basicConfig(level=logging.INFO)
-dp = Dispatcher(bot, storage=MemoryStorage())
+# Webhook sozlamalari
+WEBHOOK_HOST = "https://mahalla-yetakchisi-bot.onrender.com"  # 👈 Render project URL
+WEBHOOK_PATH = f"/webhook/{BOT_TOKEN}"
+WEBHOOK_URL = f"{WEBHOOK_HOST}{WEBHOOK_PATH}"
+WEBAPP_HOST = "0.0.0.0"
+WEBAPP_PORT = int(os.getenv("PORT", 5000))
 
 # === START ===
 @dp.message_handler(commands=['start'])
-async def start(message: types.Message):
+async def cmd_start(message: types.Message):
     await message.answer("🔙 Asosiy menyu", reply_markup=main_menu)
 
 # === 1. ARIZA QOLDIRISH ===
@@ -340,23 +347,14 @@ def save_report_to_excel(data):
     ])
     wb.save(file_path)
 
-
-from aiogram.utils.executor import start_webhook
-
-WEBHOOK_HOST = "https://your-render-app.onrender.com"  # 👈 o'zgartirasiz
-WEBHOOK_PATH = f"/webhook/{BOT_TOKEN}"
-WEBHOOK_URL = f"{WEBHOOK_HOST}{WEBHOOK_PATH}"
-
-WEBAPP_HOST = "0.0.0.0"
-WEBAPP_PORT = int(os.getenv("PORT", 5000))  # Render avtomatik PORT beradi
-
+# Webhook ishga tushirish
 async def on_startup(dp):
     await bot.set_webhook(WEBHOOK_URL)
 
 async def on_shutdown(dp):
     await bot.delete_webhook()
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     start_webhook(
         dispatcher=dp,
         webhook_path=WEBHOOK_PATH,
