@@ -3,10 +3,14 @@ services:
     name: mahalla-yetakchisi-bot
     env: python
     plan: free
-    buildCommand: pip install -r requirements.txt
+    buildCommand: ""
     startCommand: python main.py
     envVars:
       - key: BOT_TOKEN
-        sync: false
-       key: CARGO_HOME
-       value: /opt/render/project/.cargo
+        value: 8223382586:AAFb7eM0961nxzoH0fOlRNcqacVIVaNurR4
+      - key: ADMIN_GROUP_ID
+        value: "-1002577499976"
+      - key: WEBHOOK_DOMAIN
+        value: https://mahalla-bot.onrender.com
+      - key: WEBHOOK_PATH
+        value: /webhook
