@@ -8,3 +8,5 @@ services:
     envVars:
       - key: BOT_TOKEN
         sync: false
+       key: CARGO_HOME
+       value: /opt/render/project/.cargo
