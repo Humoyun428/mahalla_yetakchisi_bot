@@ -5,6 +5,7 @@ services:
     plan: free
     buildCommand: ""
     startCommand: python main.py
+    pythonVersion: 3.10.11  # ← MUHIM QATOR
     envVars:
       - key: BOT_TOKEN
         value: 8223382586:AAFb7eM0961nxzoH0fOlRNcqacVIVaNurR4
