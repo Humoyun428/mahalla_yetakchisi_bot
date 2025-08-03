@@ -5,12 +5,12 @@ services:
     plan: free
     buildCommand: ""
     startCommand: python main.py
-    pythonVersion: 3.10.11  # ← MUHIM QATOR
+    pythonVersion: 3.10.11
     envVars:
       - key: BOT_TOKEN
-        value: 8223382586:AAFb7eM0961nxzoH0fOlRNcqacVIVaNurR4
+        value: <TOKEN>
       - key: ADMIN_GROUP_ID
-        value: "-1002577499976"
+        value: "<ADMIN_ID>"
       - key: WEBHOOK_DOMAIN
         value: https://mahalla-bot.onrender.com
       - key: WEBHOOK_PATH
